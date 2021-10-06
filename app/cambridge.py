@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup
 import requests
-import pprint
 
 
 def wsearch(word):
@@ -76,7 +75,6 @@ def compileResult(entries):
              "explanation": explain
              }
         )
-    pprint.pprint(res, sort_dicts=False)
     return res
 
 
