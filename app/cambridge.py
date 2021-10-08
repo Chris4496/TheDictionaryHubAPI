@@ -20,6 +20,7 @@ def wsearch(word):
 
 
 def compileResult(entries):
+    id = 0
     res = list()
     for entry in entries:
         # get the word
@@ -69,12 +70,15 @@ def compileResult(entries):
             explain.append(groupList)
 
         res.append(
-            {"word": word,
+            {"id": id,
+             "word": word,
              "wordType": wordType,
              "audioLinks": mergedAudioList,
              "explanation": explain
              }
+
         )
+        id += 1
     return res
 
 
