@@ -3,6 +3,7 @@ import requests
 
 
 def wsearch(word):
+    word = word.replace(" ", "-")
 
     url = f"https://dictionary.cambridge.org/dictionary/english/{word}"
     user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.246'
@@ -76,7 +77,6 @@ def compileResult(entries):
              "audioLinks": mergedAudioList,
              "explanation": explain
              }
-
         )
         id += 1
     return res
