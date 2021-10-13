@@ -1,4 +1,5 @@
 import cambridge
+import oxford
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -15,7 +16,7 @@ app.add_middleware(
 )
 
 
-dictList = ["cambridge"]
+dictList = ["cambridge", "oxford"]
 
 
 # TODO error when search for result HI
@@ -25,6 +26,15 @@ async def cambridgeSearch(search: str):
     if entries == None:
         return {"response": "No result"}
     result = cambridge.compileResult(entries)
+    return result
+
+
+@app.get("/oxford/")
+async def oxfordSearch(search: str):
+    entry = oxford.wsearch(search)
+    if entry == None:
+        return {"response": "No result"}
+    result = oxford.compileResult(entry)
     return result
 
 

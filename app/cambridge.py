@@ -47,7 +47,7 @@ def compileResult(entries):
                                     "link": link})
 
         groups = entry.find_all(class_="def-block ddef_block")
-        explain = list()
+        explanation = list()
         for group in groups:
             groupList = list()
             groupText = group.find_all(
@@ -68,14 +68,14 @@ def compileResult(entries):
                             "content": text.text
                         }
                     )
-            explain.append(groupList)
+            explanation.append(groupList)
 
         res.append(
             {"id": id,
              "word": word,
              "wordType": wordType,
              "audioLinks": mergedAudioList,
-             "explanation": explain
+             "explanation": explanation
              }
         )
         id += 1

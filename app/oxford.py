@@ -40,18 +40,45 @@ def compileResult(entry):
             mergedAudioList.append({"tag": "uk",
                                     "link": tag['data-src-mp3']})
 
-    try:
-        groups = entry.find(class_="senses_multiple").find_all("sense")
-    except AttributeError:
-        print('hi')
-        groups = entry.find(class_="sense_single").find_all('sense')
+    groups = entry.find(
+        'ol', {"class": "senses_multiple"}).findAll(class_="sense")
 
-    print(word)
-    print(wordType)
-    print(mergedAudioList)
-    print(groups)
+    explanation = list()
+    for group in groups:
+        groupList = list()
+        groupText = group.findAll(True,
+                                  {"class": ["sensetop", "labels", "variants", "grammar", "def", "use", "examples"]}, recursive=False)
+        for text in groupText:
+            c = ' '.join(text['class'])
+            if c in ["sensetop", "labels", "variants", "grammar", "def", "use"]:
+                groupList.append(
+                    {
+                        "type": "main",
+                        "content": text.text
+                    }
+                )
+            elif c == "examples":
+                groupList.append(
+                    {
+                        "type": "example",
+                        "content": text.text
+                    }
+                )
+        explanation.append(groupList)
+
+    res.append(
+        {"id": id,
+            "word": word,
+            "wordType": wordType,
+            "audioLinks": mergedAudioList,
+            "explanation": explanation
+         }
+    )
+    id += 1
+
+    return res
 
 
 if __name__ == "__main__":
     res = wsearch("cock")
-    compileResult(res)
+    print(compileResult(res))
