@@ -19,7 +19,8 @@ app.add_middleware(
 dictList = ["cambridge", "oxford"]
 
 
-# TODO error when search for result HI, HAVING etc.
+# TODO error when search for result HI, HAVING etc. FUCKING HELL
+# bloody hell empty response
 @app.get("/cambridge/")
 async def cambridgeSearch(search: str):
     entries = cambridge.wsearch(search)
@@ -30,6 +31,7 @@ async def cambridgeSearch(search: str):
 
 
 # TODO alot of sample pronounication, too many. Also the same problem as cambridge
+# alot of bugs! welcome
 @app.get("/oxford/")
 async def oxfordSearch(search: str):
     entry = oxford.wsearch(search)

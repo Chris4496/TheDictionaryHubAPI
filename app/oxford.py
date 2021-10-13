@@ -39,9 +39,12 @@ def compileResult(entry):
         elif 'English' in tag['title']:
             mergedAudioList.append({"tag": "uk",
                                     "link": tag['data-src-mp3']})
-
-    groups = entry.find(
-        'ol', {"class": "senses_multiple"}).findAll(class_="sense")
+    try:
+        groups = entry.find(
+            'ol', {"class": "senses_multiple"}).findAll(class_="sense")
+    except AttributeError:
+        groups = entry.find(
+            'ol', {"class": "sense_single"}).findAll(class_="sense")
 
     explanation = list()
     for group in groups:
