@@ -19,7 +19,7 @@ app.add_middleware(
 dictList = ["cambridge", "oxford"]
 
 
-# TODO error when search for result HI
+# TODO error when search for result HI, HAVING etc.
 @app.get("/cambridge/")
 async def cambridgeSearch(search: str):
     entries = cambridge.wsearch(search)
@@ -29,6 +29,7 @@ async def cambridgeSearch(search: str):
     return result
 
 
+# TODO alot of sample pronounication, too many. Also the same problem as cambridge
 @app.get("/oxford/")
 async def oxfordSearch(search: str):
     entry = oxford.wsearch(search)

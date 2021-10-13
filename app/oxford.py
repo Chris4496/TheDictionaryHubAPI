@@ -32,7 +32,7 @@ def compileResult(entry):
 
     # get the list of audio tags
     mergedAudioList = []
-    for tag in entry.find(class_="top-container").find_all(class_="icon-audio"):
+    for tag in entry.find(class_="webtop").find_all(class_="icon-audio"):
         if 'American' in tag['title']:
             mergedAudioList.append({"tag": "us",
                                     "link": tag['data-src-mp3']})
