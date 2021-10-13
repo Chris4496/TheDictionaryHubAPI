@@ -51,12 +51,13 @@ def compileResult(entry):
         for text in groupText:
             c = ' '.join(text['class'])
             if c in ["sensetop", "labels", "variants", "grammar", "def", "use"]:
-                groupList.append(
-                    {
-                        "type": "main",
-                        "content": text.text
-                    }
-                )
+                if text.text.isspace() == False:
+                    groupList.append(
+                        {
+                            "type": "main",
+                            "content": text.text
+                        }
+                    )
             elif c == "examples":
                 groupList.append(
                     {
