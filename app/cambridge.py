@@ -15,6 +15,10 @@ def wsearch(word):
     try:
         entries = doc.find(
             class_="hfl-s lt2b lmt-10 lmb-25 lp-s_r-20 x han tc-bd lmt-20 english").find_all(class_="pr entry-body__el")
+        if entries == []:
+            # for a single entry
+            entries = doc.find(
+                class_="hfl-s lt2b lmt-10 lmb-25 lp-s_r-20 x han tc-bd lmt-20 english").find_all(class_="pr di superentry")
         return entries
     except AttributeError:
         return None
@@ -25,10 +29,14 @@ def compileResult(entries):
     res = list()
     for entry in entries:
         # get the word
-        word = entry.find(class_="hw dhw").text
+        word = entry.find(class_="di-title").text
 
         # get the word type
-        wordType = entry.find(class_="pos dpos").text
+        try:
+            wordType = entry.find(
+                True, class_="pos dpos").text
+        except AttributeError:
+            wordType = ''
 
         # get the list of audio tags
         audioTags = []
@@ -83,5 +91,5 @@ def compileResult(entries):
 
 
 if __name__ == "__main__":
-    entries = wsearch("soup")
+    entries = wsearch("hi")
     res = compileResult(entries)

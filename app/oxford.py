@@ -3,6 +3,7 @@ import requests
 
 
 def wsearch(word):
+    word = word.lower()
     word = word.replace(" ", "-")
 
     url = f"https://www.oxfordlearnersdictionaries.com/definition/english/{word}"
