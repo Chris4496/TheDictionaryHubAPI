@@ -65,12 +65,13 @@ def compileResult(entry):
                         }
                     )
             elif c == "examples":
-                groupList.append(
-                    {
-                        "type": "example",
-                        "content": text.text
-                    }
-                )
+                for example in text.find_all('li'):
+                    groupList.append(
+                        {
+                            "type": "example",
+                            "content": example.text
+                        }
+                    )
         explanation.append(groupList)
 
     res.append(
