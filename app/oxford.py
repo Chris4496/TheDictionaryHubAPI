@@ -33,13 +33,15 @@ def compileResult(entry):
 
     # get the list of audio tags
     mergedAudioList = []
-    for tag in entry.find(class_="webtop").find(class_="phonetics").find_all(class_="icon-audio"):
-        if 'American' in tag['title']:
-            mergedAudioList.append({"tag": "us",
-                                    "link": tag['data-src-mp3']})
-        elif 'English' in tag['title']:
-            mergedAudioList.append({"tag": "uk",
-                                    "link": tag['data-src-mp3']})
+    audioSection = entry.find(class_="webtop").find(class_="phonetics")
+    if audioSection != None:
+        for tag in audioSection.find_all(class_="icon-audio"):
+            if 'American' in tag['title']:
+                mergedAudioList.append({"tag": "us",
+                                        "link": tag['data-src-mp3']})
+            elif 'English' in tag['title']:
+                mergedAudioList.append({"tag": "uk",
+                                        "link": tag['data-src-mp3']})
     try:
         groups = entry.find(
             'ol', {"class": "senses_multiple"}).findAll(class_="sense")
