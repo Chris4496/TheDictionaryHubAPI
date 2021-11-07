@@ -19,7 +19,9 @@ def wsearch(word):
         pass
     try:
         entries = doc.find(id="left-content")
-        return entries
+        if entries.find(class_="missing-query") == None:
+            return entries
+        return None
     except AttributeError:
         print("No results found")
         return None
