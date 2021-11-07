@@ -1,5 +1,6 @@
 import cambridge
 import oxford
+import merriamwebster
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -16,7 +17,7 @@ app.add_middleware(
 )
 
 
-dictList = ["cambridge", "oxford"]
+dictList = ["cambridge", "oxford", "merriamwebster"]
 
 
 @app.get("/cambridge/")
@@ -34,6 +35,15 @@ async def oxfordSearch(search: str):
     if entry == None:
         return {"response": "No result"}
     result = oxford.compileResult(entry)
+    return result
+
+
+@app.get("/merriamwebster/")
+async def merriamWebsterSearch(search: str):
+    entries = merriamwebster.wsearch(search)
+    if entries == None:
+        return {"response": "No result"}
+    result = merriamwebster.compileResult(entries)
     return result
 
 
