@@ -96,8 +96,8 @@ def compileResult(soup):
             {
                 'id': id,
                 'word': word,
-                'word_type': word_type,
-                'audio': audio1,
+                'wordType': word_type,
+                'audioLinks': audio1,
                 'explanation': explanation
             }
         )
