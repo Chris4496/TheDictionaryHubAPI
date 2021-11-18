@@ -31,7 +31,7 @@ def compileResult(soup):
     all_entry_headers = soup.find_all(class_="entry-header")
     all_audio = soup.find_all(class_="entry-attr")
     all_entries = soup.find_all(
-        'div', {'id': re.compile(r'dictionary-entry-\d')})
+        'div', {'id': [re.compile(r'dictionary-entry-\d'), re.compile(r'medical-entry-\d')]})
 
     word_list = list()
     word_type_list = list()
@@ -108,8 +108,8 @@ def compileResult(soup):
 
 
 if __name__ == "__main__":
-    soup = wsearch("cock")
+    soup = wsearch("pneumonoultramicroscopicsilicovolcanoconiosis")
     if soup is None:
         print("No results found")
     result = compileResult(soup)
-    # print(result)
+    print(result)
