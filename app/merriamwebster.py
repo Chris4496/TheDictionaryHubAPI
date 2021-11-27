@@ -30,18 +30,8 @@ def wsearch(word):
 def compileResult(soup):
     all_entry_headers = soup.find_all(class_="entry-header")
     all_audio = soup.find_all(class_="entry-attr")
-
-    entries = soup.find_all(
+    all_entries = soup.find_all(
         'div', {'id': [re.compile(r'dictionary-entry-\d'), re.compile(r'medical-entry-\d')]})
-
-    essential_entries = soup.find_all(class_="learners-essential-meaning")
-
-    # combine entries and essential entries to all_entries
-    all_entries = []
-    for entry in essential_entries:
-        all_entries.append(entry)
-    for entry in entries:
-        all_entries.append(entry)
 
     word_list = list()
     word_type_list = list()
