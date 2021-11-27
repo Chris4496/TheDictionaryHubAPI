@@ -16,8 +16,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
-dictList = ["cambridge", "oxford", "merriamwebster"]
+dictList = [{"name": "cambridge", "searchQuery": "https://dictionary.cambridge.org/dictionary/english/"},
+            {"name": "oxford", "searchQuery": "https://www.oxfordlearnersdictionaries.com/definition/english/"},
+            {"name": "merriamwebster", "searchQuery": "https://www.merriam-webster.com/dictionary/"}]
 
 
 @app.get("/cambridge/")
