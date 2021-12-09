@@ -1,6 +1,7 @@
 import cambridge
 import oxford
 import merriamwebster
+import synonyms_and_antonyms
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -45,6 +46,16 @@ async def merriamWebsterSearch(search: str):
     if entries == None:
         return {"response": "No result"}
     result = merriamwebster.compileResult(entries)
+    return result
+
+
+# search synonyms and antonyms
+@app.get("/synonyms_and_antonyms/")
+async def synonymsAndAntonymsSearch(search: str):
+    data = synonyms_and_antonyms.wsearch(search)
+    if data == None:
+        return {"response": "No result"}
+    result = synonyms_and_antonyms.get_synonyms_and_antonyms(data)
     return result
 
 
