@@ -1,5 +1,6 @@
 import json
 import requests
+import collections
 
 
 def wsearch(word):
@@ -51,7 +52,7 @@ def get_synonyms_and_antonyms(data):
 
 
 if __name__ == "__main__":
-    data = wsearch('be')
+    data = wsearch('love')
     if data == None:
         print("No data")
     else:

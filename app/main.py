@@ -19,7 +19,9 @@ app.add_middleware(
 
 dictList = [{"name": "cambridge", "searchQuery": "https://dictionary.cambridge.org/dictionary/english/"},
             {"name": "oxford", "searchQuery": "https://www.oxfordlearnersdictionaries.com/definition/english/"},
-            {"name": "merriamwebster", "searchQuery": "https://www.merriam-webster.com/dictionary/"}]
+            {"name": "merriamwebster",
+                "searchQuery": "https://www.merriam-webster.com/dictionary/"},
+            {"name": "synonyms_and_antonyms", "searchQuery": "https://www.thesaurus.com/browse/"}]
 
 
 @app.get("/cambridge/")
