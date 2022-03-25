@@ -2,6 +2,7 @@ import cambridge
 import oxford
 import merriamwebster
 import synonyms_and_antonyms
+import WoTD
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -58,6 +59,14 @@ async def synonymsAndAntonymsSearch(search: str):
     if data == None:
         return {"response": "No result"}
     result = synonyms_and_antonyms.get_synonyms_and_antonyms(data)
+    return result
+
+
+@app.get("/wotd/")
+async def getWordOfTheDay():
+    result = WoTD.get_WoTD()
+    if result == None:
+        return {"response": "No result"}
     return result
 
 
