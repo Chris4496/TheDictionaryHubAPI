@@ -21,7 +21,7 @@ dictList = [{"name": "cambridge", "searchQuery": "https://dictionary.cambridge.o
             {"name": "oxford", "searchQuery": "https://www.oxfordlearnersdictionaries.com/definition/english/"},
             {"name": "merriamwebster",
                 "searchQuery": "https://www.merriam-webster.com/dictionary/"},
-            {"name": "SynAnt", "searchQuery": "https://www.thesaurus.com/browse/"}]
+            {"name": "synant", "searchQuery": "https://www.thesaurus.com/browse/"}]
 
 
 @app.get("/cambridge/")
@@ -52,7 +52,7 @@ async def merriamWebsterSearch(search: str):
 
 
 # search synonyms and antonyms
-@app.get("/synonyms_and_antonyms/")
+@app.get("/synant/")
 async def synonymsAndAntonymsSearch(search: str):
     data = synonyms_and_antonyms.wsearch(search)
     if data == None:
