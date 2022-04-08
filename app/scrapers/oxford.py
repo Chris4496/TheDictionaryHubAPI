@@ -29,7 +29,9 @@ def compileResult(entry):
     word = entry.find(class_="headword").text
 
     # get the word type
-    wordType = entry.find(class_="pos").text
+    wordType = entry.find(class_="pos")
+    if wordType != None:
+        wordType = wordType.text
 
     # get the list of audio tags
     mergedAudioList = []

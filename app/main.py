@@ -1,8 +1,8 @@
-import cambridge
-import oxford
-import merriamwebster
-import synonyms_and_antonyms
-import WoTD
+from scrapers import cambridge
+from scrapers import oxford
+from scrapers import merriamwebster
+from scrapers import synonyms_and_antonyms
+from scrapers import WoTD
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
