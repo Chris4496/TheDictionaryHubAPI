@@ -48,7 +48,15 @@ def compileResult(soup):
     audio_list = list()
     for audio in all_audio:
         urls = audio.find_all('a')
-        urls = [url['data-url'] for url in urls]
+
+        temp = list()
+        for url in urls:
+            try:
+                temp.append(url['data-url'])
+            except KeyError:
+                pass
+
+        urls = temp
         l = list()
         for url in urls:
             query_info = parse_qs(urlparse(url).query)
