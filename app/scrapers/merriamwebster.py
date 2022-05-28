@@ -73,10 +73,11 @@ def compileResult(soup):
             part_list = list()
             for text in texts:
                 if 'dtText' in text['class']:
+                    # remove the ": " in the beginning of the text
                     part_list.append(
                         {
                             'type': 'main',
-                            'content': text.text
+                            'content': text.text[2:]
 
                         }
                     )
