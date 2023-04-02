@@ -10,6 +10,10 @@ def get_WoTD():
     page = requests.get(url, headers=headers).text
     soup = BeautifulSoup(page, 'html.parser')
 
-    word = soup.find(class_="word-and-pronunciation").find('h1').text
+    word = soup.find(class_="word-and-pronunciation").find('h2').text
 
     return word.strip()
+
+
+if __name__ == "__main__":
+    print(get_WoTD())
