@@ -1,24 +1,42 @@
-import json
+from bs4 import BeautifulSoup
 import requests
+from pprint import pprint
 import collections
 
 
 def wsearch(word):
     # using thesaurus.com API
-    url = f"https://tuna.thesaurus.com/pageData/{word}"
+    url = f"https://www.thesaurus.com/browse/{word}"
     user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.246'
     headers = {'User-Agent': user_agent}
 
-    data = requests.get(url, headers=headers)
+    page = requests.get(url, headers=headers).text
+    doc = BeautifulSoup(page, 'html.parser')
 
-    json_data = json.loads(data.text)
-
-    if json_data['data'] == None:
+    try:
+        entires = doc.find(
+            class_="XuslHRKqOSTlhqdz7MbT")
+        return entires
+    except AttributeError:
         return None
-    return json_data
 
 
-def get_synonyms_and_antonyms(data):
+def compileResults(soup):
+    meaning_list = list()
+    all_defintions_entries = soup.find_all(class_="tU3uvmy24AcyNXg1gHwf")
+    for defintion_entry in all_defintions_entries:
+        pos_and_def = defintion_entry.find(class_="MzPkuB_wA1zt60pMer_S").find("p")
+        [pos, def_] = pos_and_def.text.split("  as in ")
+
+        syn_and_ant = defintion_entry.find_all(class_="flol7HNuPRe9VfZ0KeMZ")
+        i = syn_and_ant[0].find_all(class_="fltPJVdHfRCxJJVuGX8J")
+        print(len(i))
+        # I give up
+        # They win
+        
+
+
+def get_synonyms_and_antonyms(entries):
     meaning_list = list()
     all_def = data['data']['definitionData']['definitions']
 
@@ -52,8 +70,8 @@ def get_synonyms_and_antonyms(data):
 
 
 if __name__ == "__main__":
-    data = wsearch('love')
-    if data == None:
+    soup = wsearch('cock')
+    if soup == None:
         print("No data")
     else:
-        print(get_synonyms_and_antonyms(data))
+        print(compileResults(soup))
