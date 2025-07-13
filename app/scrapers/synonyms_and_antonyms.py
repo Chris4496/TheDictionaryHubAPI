@@ -1,4 +1,5 @@
 import requests
+from pprint import pprint
 
 
 def get_synonyms_and_antonyms(word: str):
@@ -23,5 +24,4 @@ def get_synonyms_and_antonyms(word: str):
 if __name__ == "__main__":
     word = "contrite"
     result = get_synonyms_and_antonyms(word)
-    print(f"Synonyms for '{word}': {result.get('synonyms', [])}")
-    print(f"Antonyms for '{word}': {result.get('antonyms', [])}")
+    pprint(result)
