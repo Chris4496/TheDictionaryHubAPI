@@ -9,17 +9,29 @@ def get_synonyms_and_antonyms(word: str):
     try:
         synonyms_response = requests.get(synonyms_url)
         antonyms_response = requests.get(antonyms_url)
+
+        pprint(synonyms_response.json())
+        pprint(antonyms_response.json())
         
         synonyms = synonyms_response.json()
         antonyms = antonyms_response.json()
         
-        return {
-            "synonyms": [item['word'] for item in synonyms],
-            "antonyms": [item['word'] for item in antonyms]
-        }
+        return [
+            {
+                "definition": "",
+                "pos": "",
+                "synonyms": {
+                    "similarity": 100,
+                    "words": [i["word"] for i in synonyms]
+                },
+                "antonyms": {
+                    "similarity": 100,
+                    "words": [i["word"] for i in antonyms]
+                }
+            }
+        ]
     except Exception as e:
-        return {"error": str(e)}
-
+        return None
 
 if __name__ == "__main__":
     word = "contrite"
