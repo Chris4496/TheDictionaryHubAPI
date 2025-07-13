@@ -54,11 +54,10 @@ async def merriamWebsterSearch(search: str):
 # search synonyms and antonyms
 @app.get("/synant/")
 async def synonymsAndAntonymsSearch(search: str):
-    data = synonyms_and_antonyms.wsearch(search)
-    if data == None:
+    data = synonyms_and_antonyms.get_synonyms_and_antonyms(search)
+    if data == None or data.get("error", None):
         return {"response": "No result"}
-    result = synonyms_and_antonyms.get_synonyms_and_antonyms(data)
-    return result
+    return data
 
 
 @app.get("/wotd/")
