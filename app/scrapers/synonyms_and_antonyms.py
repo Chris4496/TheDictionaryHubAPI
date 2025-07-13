@@ -20,14 +20,12 @@ def get_synonyms_and_antonyms(word: str):
             {
                 "definition": "",
                 "pos": "",
-                "synonyms": [{
-                    "similarity": 100,
-                    "words": [i["word"] for i in synonyms]
-                }],
-                "antonyms": [{
-                    "similarity": 100,
-                    "words": [i["word"] for i in antonyms]
-                }]
+                "synonyms": {
+                    100: [i["word"] for i in synonyms]
+                },
+                "antonyms": {
+                    100: [i["word"] for i in antonyms]
+                }
             }
         ]
     except Exception as e:
